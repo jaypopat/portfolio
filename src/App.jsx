@@ -8,7 +8,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
-
+import { BlogPost } from "./components/BlogPost";
+import { Blogs } from "./components/Blogs";
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -75,7 +76,7 @@ const Main = styled.main`
   text-align: center;
 `;
 
-const Section = styled.section`
+export const Section = styled.section`
   animation: ${fadeIn} 0.5s ease-in;
   display: flex;
   flex-direction: column;
@@ -83,7 +84,7 @@ const Section = styled.section`
   width: 100%;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-size: 3rem;
   color: #ccd6f6;
   margin-bottom: 1rem;
@@ -95,7 +96,7 @@ const Subtitle = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
@@ -124,7 +125,7 @@ const ListItem = styled.li`
   }
 `;
 
-const Button = styled(Link)`
+export const Button = styled(Link)`
   display: inline-block;
   background-color: transparent;
   color: #64ffda;
@@ -283,6 +284,8 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </Main>
     </Container>
