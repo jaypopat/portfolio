@@ -1,7 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { FaCalendar, FaArrowRight } from "react-icons/fa";
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
 
 const StyledSection = styled.section`
   display: flex;
@@ -10,6 +14,7 @@ const StyledSection = styled.section`
   width: 100%;
   padding: 3rem 1rem;
   background-color: #0a192f;
+  animation: ${fadeIn} 0.5s ease-in;
 `;
 
 const StyledTitle = styled.h1`
@@ -34,6 +39,9 @@ const BlogPost = styled.article`
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+  animation: ${fadeIn} 0.5s ease-in;
+  animation-fill-mode: both;
+  animation-delay: ${(props) => props.index * 0.1}s;
 
   &:hover {
     transform: translateY(-5px);
@@ -127,8 +135,8 @@ export const Blogs = () => {
     <StyledSection>
       <StyledTitle>Latest Posts</StyledTitle>
       <BlogGrid>
-        {blogPosts.map((post) => (
-          <BlogPost key={post.id}>
+        {blogPosts.map((post, index) => (
+          <BlogPost key={post.id} index={index}>
             <BlogContent>
               <BlogTitle>{post.title}</BlogTitle>
               <BlogDate>
