@@ -121,6 +121,7 @@ const StyledText = styled(Description)`
   line-height: 1.5;
   margin-top: 0.5rem;
   color: #a8b2d1;
+  text-align: left; /* Align text to the left */
 
   ul {
     padding-left: 1.5rem;
@@ -192,7 +193,7 @@ const WorkExperience = () => {
                   Gained in-depth knowledge of tokenomics and Substrate
                   technologies.
                 </li>
-                          </ul>
+              </ul>
             </StyledText>
           </ExperienceContent>
         </ExperienceItem>
