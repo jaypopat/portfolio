@@ -1,20 +1,28 @@
-  import React, { useEffect } from "react";
-  import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Routes,
-    useNavigate,
-    useLocation,
-  } from "react-router-dom";
-  import styled, { createGlobalStyle, keyframes } from "styled-components";
-  import { BlogPost } from "./components/BlogPost";
-  import { Blogs } from "./components/Blogs";
-  import { About } from "./components/About";
-import { Description } from "./components/StyledComponents";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+import { BlogPost } from "./components/BlogPost";
+import { Blogs } from "./components/Blogs";
+import { About } from "./components/About";
+import {
+  Description,
+  Button,
+  Section,
+  Title,
+  Subtitle,
+} from "./components/StyledComponents";
+import { Contact } from "./components/Contact";
+import { Projects } from "./components/Projects";
 
-  // Styles
-  const GlobalStyle = createGlobalStyle`
+// Styles
+const GlobalStyle = createGlobalStyle`
     body {
       margin: 0;
       padding: 0;
@@ -24,255 +32,150 @@ import { Description } from "./components/StyledComponents";
     }
   `;
 
-  const fadeIn = keyframes`
-    from { opacity: 0; }
-    to { opacity: 1; }
-  `;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+`;
 
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-  `;
+const Header = styled.header`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(10, 25, 47, 0.9);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  z-index: 1000;
+`;
 
-  const Header = styled.header`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    background-color: rgba(10, 25, 47, 0.9);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    z-index: 1000;
-  `;
+const Nav = styled.nav`
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
+`;
 
-  const Nav = styled.nav`
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    max-width: 800px;
-    width: 100%;
-  `;
+const NavLink = styled(Link)`
+  color: #8892b0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
 
-  const NavLink = styled(Link)`
-    color: #8892b0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-size: 1rem;
-
-    &:hover,
-    &.active {
-      color: #64ffda;
-    }
-  `;
-
-  const Main = styled.main`
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 800px;
-    padding: 2rem;
-    margin-top: 60px;
-    text-align: center;
-  `;
-
-  export const Section = styled.section`
-    animation: ${fadeIn} 0.5s ease-in;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  `;
-
-  export const Title = styled.h1`
-    font-size: 3rem;
-    color: #ccd6f6;
-    margin-bottom: 1rem;
-  `;
-
-  export const Subtitle = styled.h2`
-    font-size: 1.75rem;
+  &:hover,
+  &.active {
     color: #64ffda;
-    margin-bottom: 1rem;
-  `;
+  }
+`;
 
+const Main = styled.main`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  margin-top: 60px;
+  text-align: center;
+`;
 
+const KeyboardShortcut = styled.span`
+  display: inline-block;
+  background-color: #112240;
+  color: #64ffda;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+`;
 
-  export const List = styled.ul`
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    max-width: 600px;
-  `;
+// Components
+const Home = () => (
+  <Section>
+    <Title>Jay Popat</Title>
+    <Subtitle>Web3 Developer & Rust Enthusiast</Subtitle>
+    <Description>
+      Welcome to my digital playground. Explore my projects and thoughts on Web3
+      and Rust development.
+    </Description>
+    <Button to="/about">Explore More</Button>
+  </Section>
+);
 
-  export const ListItem = styled.li`
-    margin-bottom: 0.5rem;
-    background-color: #112240;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: transform 0.3s ease;
+// Main App Component
+const App = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    &:hover {
-      transform: translateY(-5px);
-    }
-  `;
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === "h") navigate("/");
+      if (e.key === "a") navigate("/about");
+      if (e.key === "p") navigate("/projects");
+      if (e.key === "c") navigate("/contact");
+      if (e.key === "b") navigate("/blogs");
+    };
 
-  export const Button = styled(Link)`
-    display: inline-block;
-    background-color: transparent;
-    color: #64ffda;
-    border: 1px solid #64ffda;
-    border-radius: 4px;
-    padding: 0.75rem 1.5rem;
-    margin-top: 2rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [navigate]);
 
-    &:hover {
-      background-color: rgba(100, 255, 218, 0.1);
-    }
-  `;
-
-  const KeyboardShortcut = styled.span`
-    display: inline-block;
-    background-color: #112240;
-    color: #64ffda;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-  `;
-
-  // Components
-  const Home = () => (
-    <Section>
-      <Title>Jay Popat</Title>
-      <Subtitle>Web3 Developer & Rust Enthusiast</Subtitle>
-      <Description>
-        Welcome to my digital playground. Explore my projects and thoughts on Web3
-        and Rust development.
-      </Description>
-      <Button to="/about">Explore More</Button>
-    </Section>
+  return (
+    <Container>
+      <GlobalStyle />
+      <Header>
+        <Nav>
+          <NavLink to="/" className={location.pathname === "/" ? "active" : ""}>
+            Home<KeyboardShortcut>H</KeyboardShortcut>
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={location.pathname === "/about" ? "active" : ""}
+          >
+            About<KeyboardShortcut>A</KeyboardShortcut>
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className={location.pathname === "/projects" ? "active" : ""}
+          >
+            Projects<KeyboardShortcut>P</KeyboardShortcut>
+          </NavLink>
+          <NavLink
+            to="/blogs"
+            className={location.pathname === "/blogs" ? "active" : ""}
+          >
+            Blogs<KeyboardShortcut>B</KeyboardShortcut>
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={location.pathname === "/contact" ? "active" : ""}
+          >
+            Contact<KeyboardShortcut>C</KeyboardShortcut>
+          </NavLink>
+        </Nav>
+      </Header>
+      <Main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+        </Routes>
+      </Main>
+    </Container>
   );
+};
 
-  const Projects = () => (
-    <Section>
-      <Title>Projects</Title>
-      <List>
-        <ListItem>
-          Decentralised Supply Chain Management Appchain - Coming soon
-        </ListItem>
-        <ListItem>Brainbox - Obsidian clone - Coming soon</ListItem>
-        <ListItem>Warp - Location based chatroom</ListItem>
-        <ListItem>
-          Roaming Kitchen - NextJS App for a Food truck Business
-        </ListItem>
-      </List>
-      <Button
-        as="a"
-        href="https://github.com/jaypopat"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View on GitHub
-      </Button>
-    </Section>
-  );
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
 
-  const Contact = () => (
-    <Section>
-      <Title>Contact</Title>
-      <Description>Feel free to reach out for collaborations or just to say hi!</Description>
-      <List>
-        <ListItem>Email: contact.jaypopat@gmail.com</ListItem>
-        <ListItem>GitHub: github.com/jaypopat</ListItem>
-        <ListItem>LinkedIn: linkedin.com/in/jaypopat1/</ListItem>
-      </List>
-      <Button as="a" href="mailto:jay.popat@example.com">
-        Get in Touch
-      </Button>
-    </Section>
-  );
-
-  // Main App Component
-  const App = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-      const handleKeyPress = (e) => {
-        if (e.key === "h") navigate("/");
-        if (e.key === "a") navigate("/about");
-        if (e.key === "p") navigate("/projects");
-        if (e.key === "c") navigate("/contact");
-        if (e.key === "b") navigate("/blogs");
-      };
-
-      window.addEventListener("keydown", handleKeyPress);
-      return () => window.removeEventListener("keydown", handleKeyPress);
-    }, [navigate]);
-
-    return (
-      <Container>
-        <GlobalStyle />
-        <Header>
-          <Nav>
-            <NavLink to="/" className={location.pathname === "/" ? "active" : ""}>
-              Home<KeyboardShortcut>H</KeyboardShortcut>
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={location.pathname === "/about" ? "active" : ""}
-            >
-              About<KeyboardShortcut>A</KeyboardShortcut>
-            </NavLink>
-            <NavLink
-              to="/projects"
-              className={location.pathname === "/projects" ? "active" : ""}
-            >
-              Projects<KeyboardShortcut>P</KeyboardShortcut>
-            </NavLink>
-            <NavLink
-              to="/blogs"
-              className={location.pathname === "/blogs" ? "active" : ""}
-            >
-              Blogs<KeyboardShortcut>B</KeyboardShortcut>
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className={location.pathname === "/contact" ? "active" : ""}
-            >
-              Contact<KeyboardShortcut>C</KeyboardShortcut>
-            </NavLink>
-          </Nav>
-        </Header>
-        <Main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-          </Routes>
-        </Main>
-      </Container>
-    );
-  };
-
-  const AppWrapper = () => (
-    <Router>
-      <App />
-    </Router>
-  );
-
-  export default AppWrapper;
+export default AppWrapper;

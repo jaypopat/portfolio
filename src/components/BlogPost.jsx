@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Section, Title, Description } from "./StyledComponents";
-import { Button } from "../App";
+import { Section, Title, Description, Button } from "./StyledComponents";
 export const BlogPost = () => {
   // const { id } = useParams();
   // Fetch blog post data based on id

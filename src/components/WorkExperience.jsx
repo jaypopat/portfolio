@@ -192,7 +192,7 @@ const WorkExperience = () => {
                   Gained in-depth knowledge of tokenomics and Substrate
                   technologies.
                 </li>
-              </ul>
+                          </ul>
             </StyledText>
           </ExperienceContent>
         </ExperienceItem>
