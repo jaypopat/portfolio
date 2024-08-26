@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Title, Description } from "./StyledComponents";
-import { Briefcase, Calendar, ChevronRight } from "lucide-react";
+import { Briefcase, Calendar, ChevronRight, ExternalLink } from "lucide-react";
 
 const ExperienceContainer = styled.div`
   max-width: 900px;
@@ -26,12 +26,26 @@ const fadeIn = keyframes`
   }
 `;
 
+const pulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(100, 255, 218, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+  }
+`;
+
 const ExperienceItem = styled.li`
   margin-bottom: 3rem;
   position: relative;
   padding-left: 3rem;
   animation: ${fadeIn} 0.5s ease-in-out;
   animation-delay: ${(props) => props.delay}s;
+  opacity: 0;
+  animation-fill-mode: forwards;
 
   &::before {
     content: "";
@@ -99,7 +113,7 @@ const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ${fadeIn} 0.5s ease-in-out;
+  animation: ${pulse} 2s infinite;
 `;
 
 const StyledText = styled(Description)`
@@ -110,11 +124,32 @@ const StyledText = styled(Description)`
 
   ul {
     padding-left: 1.5rem;
-    list-style-type: disc;
+    list-style-type: none;
   }
 
   li {
     margin-bottom: 0.5rem;
+    position: relative;
+
+    &::before {
+      content: "▹";
+      position: absolute;
+      left: -1.5rem;
+      color: #64ffda;
+    }
+  }
+`;
+
+const CompanyLink = styled.a`
+  color: #64ffda;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ccd6f6;
   }
 `;
 
@@ -129,12 +164,14 @@ const WorkExperience = () => {
           </IconWrapper>
           <ExperienceContent>
             <CompanyName>
-              Unit Network
-              <ChevronRight
-                size={16}
-                color="#64ffda"
-                style={{ marginLeft: "0.5rem" }}
-              />
+              <CompanyLink
+                href="https://www.unit.network/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Unit Network
+                <ExternalLink size={16} aria-hidden="true" />
+              </CompanyLink>
             </CompanyName>
             <JobTitle>Blockchain Engineer - Trainee</JobTitle>
             <DateRange>
@@ -143,10 +180,17 @@ const WorkExperience = () => {
             </DateRange>
             <StyledText>
               <ul>
-                <li>Engaged in unit testing and benchmarking.</li>
-                <li>Contributed to the Rust Substrate codebase.</li>
                 <li>
-                  Gained knowledge of tokenomics and Substrate technologies.
+                  Engaged in unit testing and benchmarking of blockchain
+                  components.
+                </li>
+                <li>
+                  Contributed to the Rust Substrate codebase, implementing
+                  features and optimizations.
+                </li>
+                <li>
+                  Gained in-depth knowledge of tokenomics and Substrate
+                  technologies.
                 </li>
               </ul>
             </StyledText>
@@ -159,12 +203,14 @@ const WorkExperience = () => {
           </IconWrapper>
           <ExperienceContent>
             <CompanyName>
-              Cisco
-              <ChevronRight
-                size={16}
-                color="#64ffda"
-                style={{ marginLeft: "0.5rem" }}
-              />
+              <CompanyLink
+                href="https://www.cisco.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Cisco
+                <ExternalLink size={16} aria-hidden="true" />
+              </CompanyLink>
             </CompanyName>
             <JobTitle>Software Developer Intern</JobTitle>
             <DateRange>
@@ -173,9 +219,19 @@ const WorkExperience = () => {
             </DateRange>
             <StyledText>
               <ul>
-                <li>Shadowed technical leaders in agile methodologies.</li>
-                <li>Collaborated with developers on a SaaS platform.</li>
-                <li>Developed a bot to enhance workflow efficiency.</li>
+                <li>
+                  Shadowed technical leaders in agile methodologies, gaining
+                  insights into project management.
+                </li>
+
+                <li>
+                  Developed a bot to enhance workflow efficiency, automating
+                  routine tasks for the team.
+                </li>
+                <li>
+                  Participated in code reviews,planning sessions and daily
+                  stand-ups, improving communication and coding skills.
+                </li>
               </ul>
             </StyledText>
           </ExperienceContent>
@@ -187,12 +243,14 @@ const WorkExperience = () => {
           </IconWrapper>
           <ExperienceContent>
             <CompanyName>
-              Kumon
-              <ChevronRight
-                size={16}
-                color="#64ffda"
-                style={{ marginLeft: "0.5rem" }}
-              />
+              <CompanyLink
+                href="https://www.kumon.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Kumon
+                <ExternalLink size={16} aria-hidden="true" />
+              </CompanyLink>
             </CompanyName>
             <JobTitle>Team Mentor</JobTitle>
             <DateRange>
@@ -201,8 +259,14 @@ const WorkExperience = () => {
             </DateRange>
             <StyledText>
               <ul>
-                <li>Tracked student progress and addressed errors.</li>
-                <li>Facilitated learning and guided problem-solving.</li>
+                <li>
+                  Tracked student progress and addressed errors, improving
+                  learning outcomes students.
+                </li>
+                <li>
+                  Facilitated learning and guided problem-solving in mathematics
+                  and reading comprehension.
+                </li>
               </ul>
             </StyledText>
           </ExperienceContent>
