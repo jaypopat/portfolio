@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Section, Title, Text, Button } from "../App";
+import { Section, Title, Description } from "./StyledComponents";
+import { Button } from "../App";
 export const BlogPost = () => {
   // const { id } = useParams();
   // Fetch blog post data based on id
@@ -14,8 +15,8 @@ export const BlogPost = () => {
   return (
     <Section>
       <Title>{post.title}</Title>
-      <Text>{post.date}</Text>
-      <Text>{post.content}</Text>
+      <Description>{post.date}</Description>
+      <Description>{post.content}</Description>
       <Button as={Link} to="/blogs">
         Back to Blogs
       </Button>
