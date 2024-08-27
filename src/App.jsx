@@ -7,7 +7,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import styled, { createGlobalStyle, keyframes } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { BlogPost } from "./components/BlogPost";
 import { Blogs } from "./components/Blogs";
 import { About } from "./components/About";
@@ -78,7 +78,7 @@ const Main = styled.main`
   justify-content: center;
   width: 100%;
   max-width: 800px;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   margin-top: 60px;
   text-align: center;
 `;
@@ -91,6 +91,11 @@ const KeyboardShortcut = styled.span`
   border-radius: 4px;
   font-size: 0.8rem;
   margin-left: 0.5rem;
+
+  @media (max-width: 768px) {
+    // Adjust the breakpoint as needed
+    display: none; // Hide on mobile devices
+  }
 `;
 
 // Components

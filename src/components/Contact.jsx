@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Mail, Github, Linkedin, ExternalLink, Twitter } from "lucide-react";
 import {
   Description,
   Title,
@@ -57,7 +57,9 @@ const ContactItem = styled.div`
   background: rgba(29, 45, 80, 0.5);
   border-radius: 8px;
   transition: all 0.3s ease;
-  animation: ${slideIn} 0.5s ease forwards, ${fadeIn} 0.5s ease forwards;
+  animation:
+    ${slideIn} 0.5s ease forwards,
+    ${fadeIn} 0.5s ease forwards;
   opacity: 0;
   transform: translateY(20px);
 
@@ -200,6 +202,26 @@ const StyledDescription = styled(Description)`
     font-size: 0.9rem;
   }
 `;
+const contactDetails = [
+  {
+    label: "Email",
+    url: "mailto:contact.jaypopat@gmail.com",
+    icon: <Mail size={35} color="#64ffda" aria-hidden="true" />,
+    description: "Get in touch",
+  },
+  {
+    label: "GitHub",
+    url: "https://github.com/jaypopat",
+    icon: <Github size={35} color="#64ffda" aria-hidden="true" />,
+    description: "Check my repos",
+  },
+  {
+    label: "LinkedIn",
+    url: "https://linkedin.com/in/jaypopat1/",
+    icon: <Linkedin size={35} color="#64ffda" aria-hidden="true" />,
+    description: "Let's connect",
+  },
+];
 
 export const Contact = () => {
   return (
@@ -212,60 +234,27 @@ export const Contact = () => {
           employers.
         </StyledDescription>
         <ContactGrid>
-          <ContactItem>
-            <ContactLink
-              href="mailto:contact.x@gmail.com"
-              aria-label="Email me"
-            >
-              <IconWrapper>
-                <Mail size={35} color="#64ffda" aria-hidden="true" />
-              </IconWrapper>
-              <ContactText>Email</ContactText>
-              <ContactSubText>Get in touch</ContactSubText>
-            </ContactLink>
-          </ContactItem>
-          <ContactItem>
-            <ContactLink
-              href="https://github.com/x"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my GitHub profile"
-            >
-              <IconWrapper>
-                <Github size={35} color="#64ffda" aria-hidden="true" />
-              </IconWrapper>
-              <ContactText>GitHub</ContactText>
-              <ContactSubText>
-                Check my repos
-                <ExternalLink
-                  size={16}
-                  style={{ marginLeft: "0.4rem" }}
-                  aria-hidden="true"
-                />
-              </ContactSubText>
-            </ContactLink>
-          </ContactItem>
-          <ContactItem>
-            <ContactLink
-              href="https://linkedin.com/in/x/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my LinkedIn profile"
-            >
-              <IconWrapper>
-                <Linkedin size={35} color="#64ffda" aria-hidden="true" />
-              </IconWrapper>
-              <ContactText>LinkedIn</ContactText>
-              <ContactSubText>
-                Let's connect
-                <ExternalLink
-                  size={16}
-                  style={{ marginLeft: "0.4rem" }}
-                  aria-hidden="true"
-                />
-              </ContactSubText>
-            </ContactLink>
-          </ContactItem>
+          {contactDetails.map((contact, index) => (
+            <ContactItem key={index}>
+              <ContactLink
+                href={contact.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit my ${contact.label} profile`}
+              >
+                <IconWrapper>{contact.icon}</IconWrapper>
+                <ContactText>{contact.label}</ContactText>
+                <ContactSubText>
+                  {contact.description}
+                  <ExternalLink
+                    size={16}
+                    style={{ marginLeft: "0.4rem" }}
+                    aria-hidden="true"
+                  />
+                </ContactSubText>
+              </ContactLink>
+            </ContactItem>
+          ))}
         </ContactGrid>
         <StyledButton as="a" href="mailto:contact.x@gmail.com">
           Send a Message
