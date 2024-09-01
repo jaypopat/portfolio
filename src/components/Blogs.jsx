@@ -136,7 +136,8 @@ export const Blogs = () => {
     const fetchBlogPosts = async () => {
       try {
         const url =
-          "https://cors-anywhere.herokuapp.com/https://dev.to/api/articles/me";
+          "https://thingproxy.freeboard.io/fetch/https://dev.to/api/articles/me";
+
         const response = await fetch(url, {
           method: "GET",
           headers: {
