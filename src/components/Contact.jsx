@@ -1,10 +1,5 @@
-import styled, {
-  keyframes,
-  Button,
-  Title,
-  Description,
-  Section,
-} from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { Button, Title, Description, Section } from "./StyledComponents";
 import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 
 // Keyframe animations
@@ -30,7 +25,6 @@ const pulse = keyframes`
   }
 `;
 
-// Contact specific components
 const ContactContainer = styled.div`
   display: flex;
   flex-direction: column;

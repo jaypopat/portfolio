@@ -12,7 +12,6 @@ export const slideIn = keyframes`
   to { transform: translateY(0); opacity: 1; }
 `;
 
-// Main Section
 export const Section = styled.section`
   animation: ${fadeIn} 0.5s ease-in;
   display: flex;

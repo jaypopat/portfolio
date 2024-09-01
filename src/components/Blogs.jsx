@@ -1,50 +1,18 @@
 import { useEffect, useState } from "react";
 import { Calendar, ArrowRight, Tag, Clock } from "lucide-react";
 import styled, { keyframes } from "styled-components";
+import {
+  CardTitle,
+  CardExcerpt,
+  Section,
+  Title,
+  Description,
+} from "./StyledComponents";
 import { Link } from "react-router-dom";
-
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
-`;
 
 const slideUp = keyframes`
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
-`;
-
-const Section = styled.section`
-  background: linear-gradient(to bottom, #0a192f, #112240);
-  padding: 3rem 1rem;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: #ccd6f6;
-  margin-bottom: 1rem;
-  text-align: center;
-  animation: ${fadeIn} 0.8s ease-out;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`;
-
-const Description = styled.p`
-  font-size: 1.1rem;
-  color: #8892b0;
-  max-width: 90%;
-  text-align: center;
-  margin-bottom: 2rem;
-  animation: ${fadeIn} 0.8s ease-out 0.2s backwards;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
 `;
 
 const Grid = styled.div`
@@ -79,13 +47,6 @@ const CardContent = styled.div`
   padding: 1.25rem;
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.3rem;
-  color: #e6f1ff;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
-`;
-
 const CardMeta = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -99,13 +60,6 @@ const MetaItem = styled.span`
   display: flex;
   align-items: center;
   gap: 0.3rem;
-`;
-
-const CardExcerpt = styled.p`
-  color: #a8b2d1;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
 `;
 
 const CardLink = styled(Link)`
@@ -207,8 +161,6 @@ export const Blogs = () => {
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage>{error}</ErrorMessage>;
-
-  console.log(blogPosts);
 
   return (
     <Section>

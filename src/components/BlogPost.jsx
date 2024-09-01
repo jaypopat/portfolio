@@ -39,25 +39,20 @@ export const BlogPost = () => {
   if (error) return <p>Error fetching post: {error}</p>;
   if (!post) return <p>No post found.</p>;
 
+  const createdAt = new Date(post.published_at);
+  const formattedDate = createdAt.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <Section>
       <Title>{post.title}</Title>
-      <Description>Published on {post.published_at}</Description>
+      <Description>Published on {formattedDate}</Description>
       <Description>
         <div dangerouslySetInnerHTML={{ __html: post.body_html }} />
       </Description>
-      <div>
-        <strong>Tags:</strong>{" "}
-        {post.tag_list.length > 0 ? (
-          post.tag_list.map((tag, index) => (
-            <Link key={index} to={`/t/${tag}`} style={{ marginRight: "5px" }}>
-              {tag}
-            </Link>
-          ))
-        ) : (
-          <span>No tags</span>
-        )}
-      </div>
       <div>
         <strong>Reading Time:</strong> {post.reading_time_minutes} minutes
       </div>
