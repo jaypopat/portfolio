@@ -1,7 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Section, Title, Description, Button } from "./StyledComponents";
+import {
+  Section,
+  Title,
+  Description,
+  Button,
+  LoadingSpinner,
+} from "./StyledComponents";
 
 export const BlogPost = () => {
   const { slug } = useParams();
@@ -35,7 +41,7 @@ export const BlogPost = () => {
     fetchBlogPost();
   }, [slug]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <p>Error fetching post: {error}</p>;
   if (!post) return <p>No post found.</p>;
 

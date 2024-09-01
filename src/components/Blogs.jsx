@@ -7,6 +7,7 @@ import {
   Section,
   Title,
   Description,
+  LoadingSpinner,
 } from "./StyledComponents";
 import { Link } from "react-router-dom";
 
@@ -98,25 +99,6 @@ const TagItem = styled.span`
   gap: 0.2rem;
 `;
 
-const LoadingSpinner = styled.div`
-  border: 3px solid #112240;
-  border-top: 3px solid #64ffda;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 2rem auto;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
 const ErrorMessage = styled.div`
   background-color: #ff6b6b;
   color: #fff;
@@ -135,9 +117,7 @@ export const Blogs = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const url =
-          "https://thingproxy.freeboard.io/fetch/https://dev.to/api/articles/me";
-
+        const url = "https://dev.to/api/articles/me";
         const response = await fetch(url, {
           method: "GET",
           headers: {

@@ -148,3 +148,22 @@ export const CardExcerpt = styled.p`
     font-size: 0.9rem; /* Responsive font size */
   }
 `;
+
+export const LoadingSpinner = styled.div`
+  border: 3px solid #112240;
+  border-top: 3px solid #64ffda;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
