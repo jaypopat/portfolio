@@ -117,14 +117,9 @@ export const Blogs = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const url = "https://dev.to/api/articles/me";
+        const url = "https://dev.to/api/articles?username=jaypopat";
         const response = await fetch(url, {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "User-Agent": "portfolio website",
-            "api-key": import.meta.env.VITE_DEVTO_API_KEY,
-          },
         });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
