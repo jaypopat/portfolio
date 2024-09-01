@@ -1,44 +1,21 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { Mail, Github, Linkedin, ExternalLink, Twitter } from "lucide-react";
-import {
-  Description,
-  Title,
+import styled, {
+  keyframes,
   Button,
+  Title,
+  Description,
   Section,
-  fadeIn,
-  slideIn,
-} from "./StyledComponents";
+} from "styled-components";
+import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 
-const ContactContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  background: rgba(17, 34, 64, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-
-  @media (max-width: 768px) {
-    padding: 2rem 1.5rem;
-  }
+// Keyframe animations
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
 `;
 
-const ContactGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  margin: 3rem 0;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-  }
+const slideIn = keyframes`
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 `;
 
 const pulse = keyframes`
@@ -50,6 +27,47 @@ const pulse = keyframes`
   }
   100% {
     box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+  }
+`;
+
+// Contact specific components
+const ContactContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: rgba(17, 34, 64, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+
+  @media (min-width: 480px) {
+    padding: 2.5rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+  }
+`;
+
+const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  margin: 2rem 0;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
   }
 `;
 
@@ -88,7 +106,7 @@ const ContactLink = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   height: 100%;
 
   &:hover {
@@ -99,38 +117,43 @@ const ContactLink = styled.a`
     outline: 2px solid #64ffda;
     outline-offset: 2px;
   }
+
+  @media (min-width: 768px) {
+    padding: 2rem 1.5rem;
+  }
 `;
 
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background: rgba(100, 255, 218, 0.1);
   border-radius: 50%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   animation: ${pulse} 2s infinite;
 
-  @media (max-width: 480px) {
-    width: 60px;
-    height: 60px;
+  @media (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
   }
 `;
 
 const ContactText = styled.span`
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-align: center;
   margin-bottom: 0.5rem;
 
-  @media (max-width: 480px) {
-    font-size: 1.1rem;
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
 
 const ContactSubText = styled.span`
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #64ffda;
   display: flex;
   align-items: center;
@@ -138,15 +161,15 @@ const ContactSubText = styled.span`
   text-align: center;
   line-height: 1.2;
 
-  @media (max-width: 480px) {
-    font-size: 0.85rem;
+  @media (min-width: 768px) {
+    font-size: 0.9rem;
   }
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 1rem;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 1px;
   position: relative;
@@ -173,35 +196,12 @@ const StyledButton = styled(Button)`
     color: #0a192f;
   }
 
-  @media (max-width: 480px) {
-    font-size: 1rem;
-    padding: 0.85rem 1.75rem;
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
   }
 `;
 
-const StyledTitle = styled(Title)`
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 2.25rem;
-  }
-`;
-
-const StyledDescription = styled(Description)`
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.9rem;
-  }
-`;
 const contactDetails = [
   {
     label: "Email",
@@ -227,12 +227,12 @@ export const Contact = () => {
   return (
     <Section>
       <ContactContainer>
-        <StyledTitle>Get in Touch</StyledTitle>
-        <StyledDescription>
+        <Title>Get in Touch</Title>
+        <Description>
           Feel free to reach out for collaborations or just to say hi! I'm
           always excited to connect with fellow developers and potential
           employers.
-        </StyledDescription>
+        </Description>
         <ContactGrid>
           {contactDetails.map((contact, index) => (
             <ContactItem key={index}>
@@ -263,3 +263,5 @@ export const Contact = () => {
     </Section>
   );
 };
+
+export default Contact;

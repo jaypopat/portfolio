@@ -21,11 +21,13 @@ const TabContainer = styled.div`
   padding: 0.5rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   @media (max-width: 768px) {
-    flex-wrap: wrap;
-    justify-content: center;
-    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0.25rem;
   }
 `;
 
@@ -54,9 +56,9 @@ const Tab = styled.button`
   }
 
   @media (max-width: 768px) {
-    margin: 0.25rem;
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
+    flex-shrink: 0;
   }
 `;
 
@@ -69,7 +71,9 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
-  animation: ${fadeIn} 0.5s ease-out, ${slideIn} 0.5s ease-out;
+  animation:
+    ${fadeIn} 0.5s ease-out,
+    ${slideIn} 0.5s ease-out;
   display: ${(props) => (props.active ? "block" : "none")};
   width: 100%;
 `;
@@ -85,6 +89,7 @@ const SkillList = styled(List)`
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
   }
 `;
 
@@ -96,11 +101,17 @@ const SkillItem = styled(ListItem)`
   text-align: center;
   transition: all 0.3s ease;
   list-style-type: none;
+  font-size: 0.9rem;
 
   &:hover {
     background-color: #64ffda;
     color: #0a192f;
     transform: translateY(-5px) scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.4rem;
   }
 `;
 

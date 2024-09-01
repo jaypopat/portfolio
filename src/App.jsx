@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -170,7 +170,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
         </Routes>
       </Main>
     </Container>
