@@ -1,7 +1,6 @@
-import React from "react";
 import styled, { keyframes } from "styled-components";
 import { Title, Description } from "./StyledComponents";
-import { Briefcase, Calendar, ChevronRight, ExternalLink } from "lucide-react";
+import { Briefcase, Calendar, ExternalLink } from "lucide-react";
 
 const ExperienceContainer = styled.div`
   max-width: 900px;
