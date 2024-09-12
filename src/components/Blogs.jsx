@@ -117,7 +117,7 @@ export const Blogs = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const url = "https://dev.to/api/articles?username=jaypopat";
+        const url = `https://dev.to/api/articles?username=jaypopat&timestamp=${Date.now()}`;
         const response = await fetch(url, {
           method: "GET",
         });

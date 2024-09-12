@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import {
   Section,
   Title,
@@ -8,6 +9,10 @@ import {
   Button,
   LoadingSpinner,
 } from "./StyledComponents";
+
+const LeftAlignedDescription = styled(Description)`
+  text-align: left;
+`;
 
 export const BlogPost = () => {
   const { slug } = useParams();
@@ -56,9 +61,9 @@ export const BlogPost = () => {
     <Section>
       <Title>{post.title}</Title>
       <Description>Published on {formattedDate}</Description>
-      <Description>
+      <LeftAlignedDescription>
         <div dangerouslySetInnerHTML={{ __html: post.body_html }} />
-      </Description>
+      </LeftAlignedDescription>
       <div>
         <strong>Reading Time:</strong> {post.reading_time_minutes} minutes
       </div>
