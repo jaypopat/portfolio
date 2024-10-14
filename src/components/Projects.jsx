@@ -144,16 +144,16 @@ const projects = [
             "A blockchain-based solution for managing supply chains, enhancing transparency and efficiency.",
         status: "Coming soon",
         tech: ["Substrate", "Rust", "React"],
-        github: "https://github.com/yourusername/supply-chain-appchain",
+        github: "https://github.com/jaypoat/supply-chain-appchain",
         live: null,
     },
     {
         title: "Brainbox",
         description:
             "An Obsidian clone for efficient note-taking and knowledge management.",
-        status: "Coming soon",
+        status: "In Development",
         tech: ["Rust", "React", "TypeScript"],
-        github: "https://github.com/yourusername/brainbox",
+        github: "https://github.com/jaypopat/BrainBox",
         live: null,
     },
     {
