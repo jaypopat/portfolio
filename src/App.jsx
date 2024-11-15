@@ -77,9 +77,9 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 800px;
-  padding: clamp(1rem, 5vw, 2rem);
-  margin-top: 60px;
+  max-width: 1200px;
+  padding-top: 60px;
+  margin: 0 auto;
   text-align: center;
 `;
 

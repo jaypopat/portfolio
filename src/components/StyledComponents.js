@@ -18,7 +18,9 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 0;
   background-color: #0a192f;
 `;
 
@@ -78,9 +80,7 @@ export const ListItem = styled.li`
   background-color: #112240;
   padding: 0.75rem 1.5rem; /* Increased padding for better touch targets */
   border-radius: 8px; /* Rounded corners */
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease; /* Added box shadow transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box shadow transition */
 
   &:hover {
     transform: translateY(-5px);
@@ -116,9 +116,7 @@ export const Card = styled.article`
   ); /* Gradient background */
   border-radius: 8px;
   overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   width: 100%; /* Full width for responsive design */
