@@ -144,7 +144,7 @@ const projects = [
       "An educational metaverse catering to a better and more interactive learning experience.",
     status: "Work in Progress",
     tech: ["Ink", "Rust", "WebRTC and SFUs"],
-    github: "https://github.com/jaypoat/eduverse",
+    github: "https://github.com/jaypopat/eduverse",
     live: null,
   },
   {
